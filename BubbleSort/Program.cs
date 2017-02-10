@@ -6,62 +6,18 @@ using System.Threading.Tasks;
 
 namespace BubbleSort
 {
-    /*class Program
-    {
-        static void Main(string[] args)
-        {
-            int[] x = { 14, 5, 17, 9, 0, 11, 10, 15 };
-           bool y = false;
-            int troca;
-           do
-            {                
-                for (int i = 0; i < x.Length; i++)
-                {
-                    y = false;
-                    try
-                    {
-                        if (x[i] > x[i + 1])
-                        {
-                            troca = x[i + 1];
-                            x[i + 1] = x[i];
-                            x[i] = troca;
-                           // y = true;
-                            i = 0;
-                            /*if (x[0] > x[1])
-                            {
-                                troca = x[1];
-                                x[1] = x[0];
-                                x[0] = troca;
-                            }*/
-    /* }
- }
- catch (System.IndexOutOfRangeException) { }
-
-}
-} while (y);
-
-foreach (var item in x)
-{
-Console.Write(item + " ");
-}
-Console.ReadKey();
-}
-}*/
-
-
-
     class Program
     {
         static void Main(string[] args)
         {
-            int[] x = { 14, 5, 17, 9, 0, 11, 10, 15, 2, 1, 7 };
+            int[] x = { 14, 5, 17, 9, 11, 10, 15, 2, 1, 8 };
             int aux;
 
             for (int i = 0; i < x.Length; i++)
             {
-                for (int o = 0; o < x.Length-1; o++)
+                for (int o = 0; o < x.Length - 1; o++)
                 {
-                    if (x[o]>x[o+1])
+                    if (x[o] > x[o + 1])
                     {
                         aux = x[o];
                         x[o] = x[o + 1];
@@ -72,47 +28,40 @@ Console.ReadKey();
             foreach (var item in x)
             {
                 Console.Write(item + " ");
-                
+
             }
             Console.ReadKey();
-
-            var y = 0;
-            int ini = x[0];
-            var f = x[x.Length - 1];
-            var m = x[(int)Math.Round((double)(x.Length - 1)/2)];
+            Console.WriteLine();
+            Console.Write( "digite o numero que deseja achar no array:");
             
-                for (int i = 0; i < x.Length; i++)
-                
-                    {
-                try
-                {
+                int achar = Convert.ToInt32(Console.ReadLine());
+            
+            int inicio = 0;
+            var fim = x.Length - 1;
+            var meio = (inicio + fim) / 2;
+            bool achei = false;
 
-                    if (ini + m > 8)
-                    {
-                        f = m;
-                        m = x[(int)Math.Round((double)(f / 2))];
+            for (int i = 0; i < x.Length; i++)
 
-                    }
-                    else if (ini + m < 8)
-                    {
-                        ini = m;
-                        m = x[(int)Math.Round((double)(f / 2))];
-                    }
-                    else if (ini + m == 8)
-                    {
-                        y = ini + m;
-                        Console.WriteLine(y);
-                        Console.ReadKey();
-                        break;
-                    }
-                    else if (ini + m != 8)
-                    {
-                        Console.WriteLine("diferente de 8");
-                        Console.ReadKey();
-                    }
+            {
+                try { 
+                if (x[meio]== achar || x[inicio] == achar || x[fim] == achar){
+                Console.WriteLine("Encontrei o numero: " + achar);
+                        achei = true;
+                Console.ReadKey();
+                break;
+            }else if ((x[meio]) > achar)
+            {
+                fim = meio;
+                meio = (inicio + fim) / 2;
+            }
+            else if ((x[meio]) < achar)
+            {
+                inicio = meio;
+                meio = (inicio + fim) / 2;
+            }
 
-
-                    } catch (Exception ex)
+        }catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                     Console.ReadKey();
@@ -121,7 +70,11 @@ Console.ReadKey();
 
             }
 
-
+            if (achei == false)
+            {
+                Console.WriteLine("não encontrei o numero: "+achar);
+                Console.ReadKey();
+            }
         }
     }
 }
